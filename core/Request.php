@@ -83,4 +83,46 @@ class Request
     {
         return $_SERVER['REQUEST_URI'];
     }
+
+    /**
+     * ベースURLを取得
+     * 
+     * @return string ベースURL
+     */
+    public function getBaseUrl()
+    {
+        $script_name = $_SERVER['SCRIPT_NAME'];
+
+        $request_uri = $this->getRequestUri();
+
+        if (0 === strpos($request_uri, $script_name)) {
+            // フロントコントローラがURLに含まれる場合
+            return $scrip_tname;
+        } else if (0 === strpos($request_uri, dirname($script_name))) {
+            // フロントコントローラが省略されている場合
+            return rtrim(dirname($script_name), '/');
+        }
+        return '';
+    }
+
+    /**
+     * GETパラメーターを除いたベースURL以降のURLを取得
+     * 
+     * @return string ベースURLを除いたURL
+     */
+    public function getPathInfo()
+    {
+        $base_url = $this->getBaseUrl();
+        $request_uri = $this->getRequestUri();
+
+        if (false !== ($pos = strpos($request_uri, '?'))) {
+            // $_SERVER['REQUEST_URI']に含まれるGETパラメーターを取り除く
+            $request_uri = substr($request_uri, 0, $pos);
+        }
+
+        // GETパラメーターを除いた$_SERVER['REQUEST_URI']からベースURLを除く
+        $path_info = (string)substr($request_uri, strlen($base_url));
+
+        return $path_info;
+    }
 }
