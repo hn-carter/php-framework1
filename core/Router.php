@@ -40,4 +40,30 @@ class Router
 
         return $routes;
     }
+
+    /**
+     * URLを定義済みのルーティングとマッチング
+     * 
+     * @param string URLからベースとパラメータを除いた部分
+     * @return array|false マッチしたルーティング　マッチしない場合false
+     */
+    public function resolve($path_info)
+    {
+        // 先頭はスラッシュ'/'
+        if ('/' !== substr($pash_info, 0, 1)) {
+            $path_info = '/' . $path_info;
+        }
+
+        foreach ($this->routes as $pattern => $params) {
+            // 変換済みのルーティング配列($routes)とマッチング
+            if (preg_match('#^' . $params . '$#', $path_info, $matches)) {
+                // ルーティングパラメータとしてマージ
+                $params = array_merge($params, $matches);
+
+                return $params;
+            }
+        }
+
+        return false;
+    }
 }
