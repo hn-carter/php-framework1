@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ * セッション管理
  */
 class Session
 {

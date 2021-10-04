@@ -31,7 +31,7 @@ class Response
     /**
      * HTMLなどクライアントに返す内容を設定
      *
-     * @param string
+     * @param string $content
      */
     public function setContent($content)
     {
@@ -41,8 +41,8 @@ class Response
     /**
      * HTTPのステータスコードを設定
      *
-     * @param int ステータスコード
-     * @param string ステータステキスト
+     * @param int $status_code ステータスコード
+     * @param string $status_text ステータステキスト
      */
     public function setStatusCode($status_code, $status_text = '')
     {
@@ -53,8 +53,8 @@ class Response
     /**
      * HTTPヘッダを連想配列に設定
      *
-     * @param string ヘッダの名前
-     * @param string ヘッダの値
+     * @param string $name ヘッダの名前
+     * @param string $value ヘッダの値
      */
     public function setHttpHeader($name, $value)
     {
