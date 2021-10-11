@@ -38,6 +38,7 @@ class View
      * @param string $_path ビューファイルへのパス
      * @param array $_variables ビューファイルへ渡す変数
      * @param mixed $_layout レイアウトファイル名
+     * @return string レンダリング結果
      */
     public function render($_path, $_variables = array(), $_layout = false)
     {

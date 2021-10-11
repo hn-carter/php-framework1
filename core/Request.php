@@ -97,7 +97,7 @@ class Request
 
         if (0 === strpos($request_uri, $script_name)) {
             // フロントコントローラがURLに含まれる場合
-            return $scrip_tname;
+            return $script_name;
         } else if (0 === strpos($request_uri, dirname($script_name))) {
             // フロントコントローラが省略されている場合
             return rtrim(dirname($script_name), '/');

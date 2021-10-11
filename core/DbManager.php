@@ -42,7 +42,7 @@ class DbManager
         );
 
         // エラー発生時は例外で処理
-        $son->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         // 接続を保存
         $this->connections[$name] = $con;
     }

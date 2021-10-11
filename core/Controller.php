@@ -55,7 +55,7 @@ abstract class Controller
 
         // ログインせずに認証が必要なアクションを呼び出した場合、例外を投げる
         if ($this->needsAuthentication($action) && !$this->session->isAuthenticated()) {
-            throw new UnauthorizedException();
+            throw new UnauthorizedActionException();
         }
 
         // アクションメソッドを呼び出しコンテンツを受け取る
@@ -163,7 +163,6 @@ abstract class Controller
     {
         $key = 'csrf_tokens/' . $form_name;
         $tokens = $this->session->get($key, array());
-
         // セッションに一致するトークンが格納されているか判定
         if (false !== ($pos = array_search($token, $tokens, true))) {
             // 1度利用したトークンは削除する

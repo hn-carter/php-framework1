@@ -40,7 +40,7 @@ abstract class DbRepository
     public function execute($sql, $params = array())
     {
         $stmt = $this->con->prepare($sql);
-        $stmt->execuet($params);
+        $stmt->execute($params);
 
         return $stmt;
     }

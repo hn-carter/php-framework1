@@ -18,7 +18,7 @@ class Session
      * コンストラクタ
      * セッションを開始
      */
-    public function __construst()
+    public function __construct()
     {
         if (!self::$sessionStarted) {
             session_start();

@@ -50,13 +50,13 @@ class Router
     public function resolve($path_info)
     {
         // 先頭はスラッシュ'/'
-        if ('/' !== substr($pash_info, 0, 1)) {
+        if ('/' !== substr($path_info, 0, 1)) {
             $path_info = '/' . $path_info;
         }
 
         foreach ($this->routes as $pattern => $params) {
             // 変換済みのルーティング配列($routes)とマッチング
-            if (preg_match('#^' . $params . '$#', $path_info, $matches)) {
+            if (preg_match('#^' . $pattern . '$#', $path_info, $matches)) {
                 // ルーティングパラメータとしてマージ
                 $params = array_merge($params, $matches);
 

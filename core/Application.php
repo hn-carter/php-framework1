@@ -50,7 +50,7 @@ abstract class Application
         $this->response = new Response();
         $this->session = new Session();
         $this->db_manager = new DbManager();
-        $this->router = new Router($this->resisterRouters());
+        $this->router = new Router($this->registerRoutes());
     }
 
     protected function configure()
@@ -234,7 +234,7 @@ abstract class Application
             } else {
                 require_once $controller_file;
 
-                if (!class_exist($controller_class)) {
+                if (!class_exists($controller_class)) {
                     return false;
                 }
             }
@@ -250,11 +250,11 @@ abstract class Application
      */
     protected function render404Page($e)
     {
-        $this->response->setStatuCode(404, 'Not Found');
+        $this->response->setStatusCode(404, 'Not Found');
         $message = $this->isDebugMode() ? $e->getMessage() : 'Page not found.';
         $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
-        $rhis->response->setContent(<<<EOF
+        $this->response->setContent(<<<EOF
 <!DOCTYPE html>
 <html>
 <head>
